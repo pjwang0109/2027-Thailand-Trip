@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新竹・峨眉湖日和｜一日慢旅手帖</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Noto Serif TC & Noto Sans TC & Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            washi: '#F9F7F2',
+            washiDark: '#F1EDE4',
+            matcha: '#3A5A40',
+            matchaLight: '#E9EDE6',
+            wood: '#A67B5B',
+            woodLight: '#F4ECE4',
+            ink: '#2B2B2B',
+            inkMuted: '#6E6A63',
+            hairline: '#E2DDD3',
+          },
+          fontFamily: {
+            serif: ['"Noto Serif TC"', 'serif'],
+            sans: ['"Noto Sans TC"', 'sans-serif'],
+            en: ['"Cormorant Garamond"', 'serif'],
+          },
+          boxShadow: {
+            'soft': '0 8px 30px -6px rgba(43, 43, 43, 0.06)',
+            'card': '0 2px 12px rgba(58, 90, 64, 0.04)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 和紙細微紋理質感 */
+    body {
+      background-color: #F9F7F2;
+      color: #2B2B2B;
+      background-image: radial-gradient(#DFD9CE 0.5px, transparent 0.5px);
+      background-size: 16px 16px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 日系直書排版 */
+    .writing-vertical {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+
+    /* 隱藏捲軸但保留滑動功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 平滑展開動畫 */
+    .details-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .details-content.open {
+      grid-template-rows: 1fr;
+    }
+    .details-inner {
+      overflow: hidden;
+    }
+
+    /* 勾選框微動畫 */
+    .check-strike {
+      transition: all 0.25s ease;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-matcha selection:text-white pb-24">
+
+  <!-- 主容器：手機滿版，桌機置中呈現日系旅誌手冊感 -->
+  <div class="max-w-lg mx-auto min-h-screen bg-washi/95 shadow-soft border-x border-hairline relative">
+
+    <!-- 頂部雜誌封面區塊 (Hero Cover) -->
+    <header class="relative pt-10 pb-8 px-6 border-b border-hairline overflow-hidden bg-gradient-to-b from-[#F3EFE6] to-washi">
+      <!-- 背景裝飾：極簡山水線條 SVG -->
+      <svg class="absolute right-0 bottom-0 w-64 h-40 text-matcha/[0.06] pointer-events-none" viewBox="0 0 200 120" fill="none">
+        <path d="M0 100 Q 45 45, 95 85 T 200 60 L 200 120 L 0 120 Z" fill="currentColor"/>
+        <path d="M30 120 Q 90 55, 150 95 T 220 75 L 220 120 Z" fill="currentColor" opacity="0.6"/>
+      </svg>
+
+      <!-- 頂部刊頭標籤 -->
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-matcha"></span>
+          <span class="font-en tracking-[0.22em] text-xs uppercase text-inkMuted font-semibold">Tabi Note · Vol.01</span>
+        </div>
+        <button onclick="copyItineraryText()" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-white/80 border border-hairline text-ink hover:border-matcha transition active:scale-95">
+          <i data-lucide="share-2" class="w-3.5 h-3.5 text-matcha"></i>
+          <span>複製文字版</span>
+        </button>
+      </div>
+
+      <!-- 主標題與直書副標 -->
+      <div class="flex justify-between items-start gap-4">
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-matchaLight text-matcha text-xs font-medium tracking-wider">
+            <span>台北萬隆出發</span>
+            <span>·</span>
+            <span>自駕一日慢旅</span>
+          </div>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-snug">
+            新竹・峨眉湖日和
+          </h1>
+          <p class="text-sm text-inkMuted leading-relaxed max-w-[270px]">
+            沿著國道三號往南，在湖光山色、百年茶香與客家風土之間，度過剛剛好的週末時光。
+          </p>
+        </div>
+
+        <!-- 日系直書印章裝飾 -->
+        <div class="shrink-0 flex flex-col items-center gap-2 pt-1">
+          <div class="writing-vertical font-serif text-xs tracking-[0.3em] text-inkMuted border-l border-hairline pl-2.5 py-1">
+            湖畔散步與茶香
+          </div>
+          <div class="w-7 h-7 rounded-md border border-wood/60 flex items-center justify-center text-[10px] font-serif text-wood font-bold rotate-3 select-none">
+            慢旅
+          </div>
+        </div>
+      </div>
+
+      <!-- 行程概覽小資訊卡 -->
+      <div class="grid grid-cols-3 gap-2.5 mt-7 pt-5 border-t border-hairline/80 text-center">
+        <div class="bg-white/70 rounded-xl p-2.5 border border-hairline/60">
+          <div class="text-[11px] text-inkMuted mb-0.5">出發時間</div>
+          <div class="font-serif font-semibold text-sm text-ink">10:00 AM</div>
+        </div>
+        <div class="bg-white/70 rounded-xl p-2.5 border border-hairline/60">
+          <div class="text-[11px] text-inkMuted mb-0.5">總車程預估</div>
+          <div class="font-serif font-semibold text-sm text-ink">單程 ~75 分</div>
+        </div>
+        <div class="bg-white/70 rounded-xl p-2.5 border border-hairline/60">
+          <div class="text-[11px] text-inkMuted mb-0.5">今日主題</div>
+          <div class="font-serif font-semibold text-sm text-matcha">湖景・茶・食</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 黏性分類導覽列 (Sticky Navigation Tabs) -->
+    <nav class="sticky top-0 z-30 bg-washi/95 backdrop-blur-md border-b border-hairline px-4 py-3">
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <button onclick="filterTab('all')" data-tab="all" class="tab-btn active shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-matcha text-white shadow-sm">
+          全部行程 (7)
+        </button>
+        <button onclick="filterTab('spot')" data-tab="spot" class="tab-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white text-inkMuted border border-hairline hover:border-matcha">
+          景點漫步
+        </button>
+        <button onclick="filterTab('food')" data-tab="food" class="tab-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white text-inkMuted border border-hairline hover:border-matcha">
+          午晚餐＆午茶
+        </button>
+        <button onclick="filterTab('tools')" data-tab="tools" class="tab-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white text-inkMuted border border-hairline hover:border-matcha">
+          行前清單＆分帳
+        </button>
+      </div>
+    </nav>
+
+    <!-- 主要內容區：行程時間軸 -->
+    <main id="itinerary-section" class="px-5 pt-6 pb-8">
+      
+      <!-- 路線提示小橫幅 -->
+      <div class="flex items-center justify-between bg-woodLight/80 border border-wood/20 rounded-xl px-4 py-2.5 mb-6 text-xs text-ink">
+        <div class="flex items-center gap-2">
+          <i data-lucide="car" class="w-4 h-4 text-wood shrink-0"></i>
+          <span>建議路線：萬隆 → 國道三號南下 → 寶山交流道下接峨眉</span>
+        </div>
+      </div>
+
+      <!-- 時間軸列表容器 -->
+      <div id="timeline-container" class="relative space-y-5 before:content-[''] before:absolute before:left-[19px] before:top-3 before:bottom-3 before:w-[1px] before:bg-hairline">
+        <!-- 由 JavaScript 動態渲染精美的行程卡片 -->
+      </div>
+    </main>
+
+    <!-- 旅伴互動工具區：行前清單 & 分帳計算機 -->
+    <section id="tools-section" class="px-5 pt-2 pb-10 space-y-6">
+      
+      <!-- 分隔波浪線 SVG -->
+      <div class="flex items-center justify-center py-2 text-hairline">
+        <svg class="w-32 h-3" viewBox="0 0 120 12" fill="none">
+          <path d="M0 6 Q 15 0, 30 6 T 60 6 T 90 6 T 120 6" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- 1. 旅伴共同準備清單 -->
+      <div class="bg-white rounded-2xl p-5 border border-hairline shadow-card">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <span class="font-en text-[11px] tracking-widest uppercase text-wood block">Checklist</span>
+            <h2 class="font-serif text-lg font-bold text-ink">旅伴行前＆車上清單</h2>
+          </div>
+          <span id="checklist-progress" class="text-xs font-medium px-2.5 py-1 rounded-full bg-matchaLight text-matcha">0 / 6 完成</span>
+        </div>
+        
+        <div id="checklist-items" class="space-y-2.5">
+          <!-- JS 動態生成 -->
+        </div>
+
+        <!-- 新增自訂項目 -->
+        <form onsubmit="addChecklistItem(event)" class="mt-4 pt-3 border-t border-hairline/70 flex gap-2">
+          <input type="text" id="new-check-input" placeholder="新增要帶的東西（例：行動電源）..." class="flex-1 text-xs bg-washi border border-hairline rounded-xl px-3 py-2 focus:outline-none focus:border-matcha">
+          <button type="submit" class="px-3.5 py-2 bg-matcha text-white text-xs font-medium rounded-xl hover:bg-matcha/90 transition shrink-0">
+            新增
+          </button>
+        </form>
+      </div>
+
+      <!-- 2. 車資與餐費簡易分帳小工具 -->
+      <div class="bg-white rounded-2xl p-5 border border-hairline shadow-card">
+        <div class="mb-4">
+          <span class="font-en text-[11px] tracking-widest uppercase text-wood block">Split Bill</span>
+          <h2 class="font-serif text-lg font-bold text-ink">旅伴公費分帳試算</h2>
+          <p class="text-xs text-inkMuted mt-0.5">輸入油資、過路費或餐費，即時幫大家算好每人金額</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-3">
+          <div>
+            <label class="block text-[11px] text-inkMuted mb-1">同行人數（含駕駛）</label>
+            <input type="number" id="split-people" value="4" min="1" max="20" oninput="calculateSplit()" class="w-full text-sm bg-washi border border-hairline rounded-xl px-3 py-2 font-serif font-semibold focus:outline-none focus:border-matcha">
+          </div>
+          <div>
+            <label class="block text-[11px] text-inkMuted mb-1">油資＋過路費補貼 (元)</label>
+            <input type="number" id="split-gas" value="600" min="0" step="50" oninput="calculateSplit()" class="w-full text-sm bg-washi border border-hairline rounded-xl px-3 py-2 font-serif font-semibold focus:outline-none focus:border-matcha">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div>
+            <label class="block text-[11px] text-inkMuted mb-1">午餐＋午茶總額 (元)</label>
+            <input type="number" id="split-lunch" placeholder="0" min="0" oninput="calculateSplit()" class="w-full text-sm bg-washi border border-hairline rounded-xl px-3 py-2 font-serif font-semibold focus:outline-none focus:border-matcha">
+          </div>
+          <div>
+            <label class="block text-[11px] text-inkMuted mb-1">晚餐總額 (元)</label>
+            <input type="number" id="split-dinner" placeholder="0" min="0" oninput="calculateSplit()" class="w-full text-sm bg-washi border border-hairline rounded-xl px-3 py-2 font-serif font-semibold focus:outline-none focus:border-matcha">
+          </div>
+        </div>
+
+        <div class="bg-washiDark rounded-xl p-3.5 flex items-center justify-between border border-hairline">
+          <div>
+            <div class="text-xs text-inkMuted">總花費：<span id="split-total" class="font-semibold text-ink">NT$ 600</span></div>
+            <div class="text-[11px] text-inkMuted mt-0.5">平均每人應分攤</div>
+          </div>
+          <div class="text-right">
+            <span class="font-serif text-2xl font-bold text-matcha" id="split-per-person">NT$ 150</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 底部版權與貼心語錄 -->
+    <footer class="px-6 py-8 border-t border-hairline text-center bg-[#F3EFE6]/60">
+      <p class="font-serif text-xs text-inkMuted tracking-widest mb-1">よい旅を · Have a Nice Trip</p>
+      <p class="text-[11px] text-inkMuted/70">專為旅伴設計的日系隨身行程手帖 · 隨時更新</p>
+    </footer>
+
+  </div>
+
+  <!-- 底部浮動快捷列 (Mobile Bottom Bar) -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-md">
+    <div class="bg-ink/95 backdrop-blur-md text-white rounded-full px-4 py-2.5 shadow-lg flex items-center justify-between border border-white/10">
+      <div class="flex items-center gap-2.5 pl-1">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-xs font-medium tracking-wide" id="next-stop-label">首站：10:00 台北萬隆集合</span>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&origin=捷運萬隆站&destination=峨眉湖細茅埔吊橋&travelmode=driving" target="_blank" rel="noopener" class="flex items-center gap-1.5 bg-matcha hover:bg-matcha/90 text-white text-xs font-medium px-3.5 py-1.5 rounded-full transition active:scale-95">
+        <i data-lucide="navigation" class="w-3.5 h-3.5"></i>
+        <span>一鍵導航出發</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Toast 提示訊息框 -->
+  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 -translate-y-2">
+    <div class="bg-ink text-white text-xs px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2">
+      <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+      <span id="toast-msg">已複製完整行程文字！</span>
+    </div>
+  </div>
+
+  <script>
+    // 行程資料結構（方便你日後隨時修改或替換成自己的行程表）
+    const itineraryData = [
+      {
+        id: 1,
+        time: "10:00",
+        duration: "車程約 75 分鐘",
+        category: "move",
+        tag: "集合出發",
+        tagColor: "bg-stone-200/80 text-stone-700",
+        title: "台北萬隆集合出發",
+        subtitle: "捷運萬隆站周邊上車 · 國道三號南下",
+        summary: "從萬隆上水源快速道路或景美接國道三號南下，沿途聽歌聊天，輕鬆前往新竹峨眉。",
+        highlights: [
+          "建議在萬隆先買好手沖咖啡與小點心，車程剛好一小時出頭。",
+          "導航可設定「峨眉湖停車場」或「細茅埔吊橋」，下寶山交流道後山路平緩好開。"
+        ],
+        parking: "萬隆站 4 號出口旁臨停上車最順路",
+        mapQuery: "捷運萬隆站",
+        isNavOrigin: true
+      },
+      {
+        id: 2,
+        time: "11:30",
+        duration: "停留約 1 小時",
+        category: "spot",
+        tag: "湖光漫步",
+        tagColor: "bg-matchaLight text-matcha",
+        title: "峨眉湖環湖步道＆細茅埔吊橋",
+        subtitle: "波光粼粼的綠色秘境 · 平緩好走無負擔",
+        summary: "走過木棧道與細茅埔吊橋，遠眺湖畔彌勒大佛與翠綠山巒倒影，微風吹拂非常療癒。",
+        highlights: [
+          "細茅埔吊橋中央是拍攝湖景與山巒倒影的最佳角度。",
+          "環湖步道全程平緩有樹蔭，穿好走的休閒鞋即可輕鬆散步。"
+        ],
+        parking: "大自然文化世界周邊免費停車格或富興國小旁停車場",
+        mapQuery: "峨眉湖細茅埔吊橋"
+      },
+      {
+        id: 3,
+        time: "12:45",
+        duration: "用餐約 1.5 小時",
+        category: "food",
+        tag: "湖畔午餐",
+        tagColor: "bg-woodLight text-wood",
+        title: "二泉湖畔咖啡 / 湖畔景觀餐坊",
+        subtitle: "清水模建築與無邊際水景的靜謐午餐",
+        summary: "坐在建築被水池環繞的湖畔餐廳裡，享用結合在地食材的精緻簡餐或客家風味料理。",
+        highlights: [
+          "推薦：主廚特餐、客家桔醬風味料理、手沖單品咖啡。",
+          "備案推薦：若想吃道地合菜，車程 5 分鐘的「十二寮桐花谷」或「老頭擺客家菜」也很棒。"
+        ],
+        parking: "餐廳附設專屬停車場（建議出發前 2 天電話訂位）",
+        mapQuery: "二泉湖畔咖啡"
+      },
+      {
+        id: 4,
+        time: "14:30",
+        duration: "停留約 1 小時",
+        category: "spot",
+        tag: "百年茶香",
+        tagColor: "bg-matchaLight text-matcha",
+        title: "富興老茶廠＆十二寮休閒農業區",
+        subtitle: "紅磚老屋裡的東方美人茶時光",
+        summary: "走進百年製茶工廠，看老式製茶機械與紅磚建築，品一口帶有天然蜜香的東方美人茶。",
+        highlights: [
+          "必體驗：免費導覽製茶歷史、試飲現泡東方美人茶（膨風茶）。",
+          "紅磚牆與木窗光影非常有日系昭和懷舊感，適合幫旅伴拍人像。"
+        ],
+        parking: "富興老茶廠對面即有免費停車空間",
+        mapQuery: "富興老茶廠"
+      },
+      {
+        id: 5,
+        time: "16:00",
+        duration: "停留約 1.5 小時",
+        category: "food",
+        tag: "老街午茶",
+        tagColor: "bg-woodLight text-wood",
+        title: "北埔老街漫步・擂茶與柿餅下午茶",
+        subtitle: "距離峨眉湖僅 10 分鐘車程的古蹟聚落",
+        summary: "穿梭在慈天宮與姜阿新洋樓周邊的紅磚巷弄，體驗手作客家擂茶，順手帶盒新竹名產柿餅。",
+        highlights: [
+          "必吃清單：三十九號北埔擂茶（冰沙擂茶超消暑）、一口菜包、姜太公柿餅。",
+          "推薦順遊「姜阿新洋樓」外觀拍照，感受《茶金》時代的優雅建築。"
+        ],
+        parking: "北埔公有停車場（鄧南光影像紀念館旁）",
+        mapQuery: "北埔老街"
+      },
+      {
+        id: 6,
+        time: "18:00",
+        duration: "用餐約 1.5 小時",
+        category: "food",
+        tag: "新竹晚餐",
+        tagColor: "bg-woodLight text-wood",
+        title: "新竹晚餐饗宴（雙路線任選）",
+        subtitle: "北返順路吃晚餐，剛好避開國道尖峰車潮",
+        summary: "從北埔往新竹市區或竹北方向前進，依據大家晚上的胃口選擇「質感餐廳」或「在地名店」。",
+        highlights: [
+          "選項 A（質感文青/聚餐）：竹北「彼刻義式餐酒館」或「井町日式蔬食/定食」，環境舒適好停車。",
+          "選項 B（經典必吃小吃）：新竹「璽子牛肉麵（斤餅必點）」或「鴨肉許（北門店）」。"
+        ],
+        parking: "竹北光明一路商圈或新竹市區公有停車場",
+        mapQuery: "新竹璽子牛肉麵"
+      },
+      {
+        id: 7,
+        time: "20:00",
+        duration: "車程約 65 分鐘",
+        category: "move",
+        tag: "平安賦歸",
+        tagColor: "bg-stone-200/80 text-stone-700",
+        title: "返回台北萬隆",
+        subtitle: "國道三號北返 · 預計 21:05 抵達萬隆",
+        summary: "晚餐後心滿意足地踏上歸途，晚間國道車流順暢，約一小時即可回到台北萬隆。",
+        highlights: [
+          "回程前可先在竹北超商買瓶無糖茶，讓駕駛提神。",
+          "記得在下方「分帳小工具」結算今天的油資與餐費喔！"
+        ],
+        parking: "原萬隆集合地點下車",
+        mapQuery: "捷運萬隆站"
+      }
+    ];
+
+    // 預設行前清單
+    const defaultChecklist = [
+      { id: 'c1', text: '駕駛駕照、行照、車用手機架＆充電線', checked: true },
+      { id: 'c2', text: '保溫瓶（裝茶水）與車上小零食', checked: false },
+      { id: 'c3', text: '輕便薄外套（湖畔與傍晚微涼）', checked: false },
+      { id: 'c4', text: '防蚊液＆防曬乳（環湖步道必備）', checked: false },
+      { id: 'c5', text: '相機 / 行動電源（超多日系好拍場景）', checked: false },
+      { id: 'c6', text: '少許現金（北埔老街小吃與柿餅伴手禮）', checked: false },
+    ];
+
+    let checklistState = JSON.parse(localStorage.getItem('emei_checklist_v1')) || defaultChecklist;
+    let currentFilter = 'all';
+
+    // 渲染時間軸卡片
+    function renderTimeline(filter = 'all') {
+      const container = document.getElementById('timeline-container');
+      container.innerHTML = '';
+
+      const filtered = itineraryData.filter(item => {
+        if (filter === 'all') return true;
+        if (filter === 'spot') return item.category === 'spot';
+        if (filter === 'food') return item.category === 'food';
+        return true;
+      });
+
+      filtered.forEach((item, index) => {
+        const isFood = item.category === 'food';
+        const dotColor = isFood ? 'bg-wood border-woodLight' : (item.category === 'spot' ? 'bg-matcha border-matchaLight' : 'bg-stone-400 border-stone-200');
+        const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`;
+
+        const cardHTML = `
+          <article class="relative pl-11 group">
+            <!-- 時間軸圓點 -->
+            <div class="absolute left-[11px] top-5 w-[17px] h-[17px] rounded-full ${dotColor} border-4 shadow-sm z-10 transition-transform group-hover:scale-110"></div>
+
+            <!-- 卡片本體 -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-hairline shadow-card hover:border-matcha/40 transition-all">
+              
+              <!-- 時間與標籤列 -->
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-serif font-bold text-base text-ink tracking-wide">${item.time}</span>
+                  <span class="text-[11px] text-inkMuted">· ${item.duration}</span>
+                </div>
+                <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full ${item.tagColor}">
+                  ${item.tag}
+                </span>
+              </div>
+
+              <!-- 標題與副標 -->
+              <h3 class="font-serif text-lg font-bold text-ink leading-snug mb-1">
+                ${item.title}
+              </h3>
+              <p class="text-xs text-wood font-medium mb-2.5">
+                ${item.subtitle}
+              </p>
+
+              <!-- 簡介 -->
+              <p class="text-xs sm:text-[13px] text-inkMuted leading-relaxed mb-3.5">
+                ${item.summary}
+              </p>
+
+              <!-- 展開細節區 (旅伴筆記 & 停車資訊) -->
+              <div id="details-${item.id}" class="details-content">
+                <div class="details-inner">
+                  <div class="pt-3 pb-1 mt-1 border-t border-dashed border-hairline space-y-2.5 text-xs">
+                    <div class="bg-washi rounded-xl p-3 space-y-1.5">
+                      <div class="font-semibold text-ink flex items-center gap-1.5">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-wood"></i>
+                        <span>旅伴亮點筆記</span>
+                      </div>
+                      <ul class="list-disc list-inside text-inkMuted space-y-1 pl-0.5">
+                        ${item.highlights.map(h => `<li>${h}</li>`).join('')}
+                      </ul>
+                    </div>
+                    <div class="flex items-start gap-1.5 text-inkMuted px-1">
+                      <i data-lucide="parking-circle" class="w-3.5 h-3.5 text-matcha shrink-0 mt-0.5"></i>
+                      <span><strong class="text-ink font-medium">停車建議：</strong>${item.parking}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 底部操作列：展開筆記 + Google Maps 導航 -->
+              <div class="flex items-center justify-between gap-2 pt-3 mt-2 border-t border-hairline/60">
+                <button onclick="toggleDetails(${item.id})" class="flex items-center gap-1 text-xs text-inkMuted hover:text-ink py-1 px-1.5 rounded-lg transition">
+                  <span id="toggle-text-${item.id}">查看亮點與停車</span>
+                  <i id="toggle-icon-${item.id}" data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-300"></i>
+                </button>
+
+                <a href="${mapUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-medium text-matcha bg-matchaLight/80 hover:bg-matcha hover:text-white px-3 py-1.5 rounded-full transition active:scale-95">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                  <span>開啟地圖</span>
+                </a>
+              </div>
+
+            </div>
+          </article>
+        `;
+        container.insertAdjacentHTML('beforeend', cardHTML);
+      });
+
+      lucide.createIcons();
+    }
+
+    // 展開/收合卡片細節
+    function toggleDetails(id) {
+      const content = document.getElementById(`details-${id}`);
+      const icon = document.getElementById(`toggle-icon-${id}`);
+      const text = document.getElementById(`toggle-text-${id}`);
+      
+      const isOpen = content.classList.toggle('open');
+      icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      text.textContent = isOpen ? '收合筆記' : '查看亮點與停車';
+    }
+
+    // 頂部標籤篩選與滑動跳轉
+    function filterTab(tab) {
+      currentFilter = tab;
+      
+      // 更新按鈕樣式
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.dataset.tab === tab) {
+          btn.className = 'tab-btn active shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-matcha text-white shadow-sm';
+        } else {
+          btn.className = 'tab-btn shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-white text-inkMuted border border-hairline hover:border-matcha';
+        }
+      });
+
+      if (tab === 'tools') {
+        document.getElementById('tools-section').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        renderTimeline(tab);
+        document.getElementById('itinerary-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // 渲染行前清單
+    function renderChecklist() {
+      const container = document.getElementById('checklist-items');
+      container.innerHTML = '';
+
+      let completed = 0;
+      checklistState.forEach(item => {
+        if (item.checked) completed++;
+        const row = `
+          <label class="flex items-center justify-between gap-3 p-2.5 rounded-xl border ${item.checked ? 'bg-washi/60 border-hairline/50' : 'bg-white border-hairline'} cursor-pointer hover:border-matcha/40 transition select-none">
+            <div class="flex items-center gap-3">
+              <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleCheckItem('${item.id}')" class="w-4 h-4 accent-[#3A5A40] rounded cursor-pointer">
+              <span class="text-xs sm:text-[13px] check-strike ${item.checked ? 'line-through text-inkMuted/70' : 'text-ink'}">${item.text}</span>
+            </div>
+            <button type="button" onclick="deleteCheckItem(event, '${item.id}')" class="text-inkMuted/40 hover:text-red-500 p-1 transition" title="刪除">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </label>
+        `;
+        container.insertAdjacentHTML('beforeend', row);
+      });
+
+      document.getElementById('checklist-progress').textContent = `${completed} / ${checklistState.length} 完成`;
+      localStorage.setItem('emei_checklist_v1', JSON.stringify(checklistState));
+      lucide.createIcons();
+    }
+
+    function toggleCheckItem(id) {
+      checklistState = checklistState.map(item => 
+        item.id === id ? { ...item, checked: !item.checked } : item
+      );
+      renderChecklist();
+    }
+
+    function addChecklistItem(e) {
+      e.preventDefault();
+      const input = document.getElementById('new-check-input');
+      const val = input.value.trim();
+      if (!val) return;
+      
+      checklistState.push({
+        id: 'c_' + Date.now(),
+        text: val,
+        checked: false
+      });
+      input.value = '';
+      renderChecklist();
+      showToast('已加入準備清單');
+    }
+
+    function deleteCheckItem(e, id) {
+      e.preventDefault();
+      e.stopPropagation();
+      checklistState = checklistState.filter(item => item.id !== id);
+      renderChecklist();
+    }
+
+    // 分帳計算機邏輯
+    function calculateSplit() {
+      const people = Math.max(1, parseInt(document.getElementById('split-people').value) || 1);
+      const gas = Math.max(0, parseFloat(document.getElementById('split-gas').value) || 0);
+      const lunch = Math.max(0, parseFloat(document.getElementById('split-lunch').value) || 0);
+      const dinner = Math.max(0, parseFloat(document.getElementById('split-dinner').value) || 0);
+
+      const total = gas + lunch + dinner;
+      const perPerson = Math.ceil(total / people);
+
+      document.getElementById('split-total').textContent = `NT$ ${total.toLocaleString()}`;
+      document.getElementById('split-per-person').textContent = `NT$ ${perPerson.toLocaleString()}`;
+    }
+
+    // 一鍵複製文字版行程（方便貼到 LINE 群組）
+    function copyItineraryText() {
+      const lines = [
+        "🌿【新竹・峨眉湖日和｜一日慢旅】",
+        "🚗 台北萬隆自駕出發",
+        "------------------------",
+        ...itineraryData.map(item => `${item.time}｜${item.title}\n   └ ${item.subtitle}`),
+        "------------------------",
+        "💡 記得帶薄外套、防蚊液與好走的鞋！"
+      ];
+      const textToCopy = lines.join("\n");
+
+      const textarea = document.createElement("textarea");
+      textarea.value = textToCopy;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        showToast("已複製行程文字，可直接貼到 LINE 群組！");
+      } catch (err) {
+        showToast("複製失敗，請手動選取文字");
+      }
+      document.body.removeChild(textarea);
+    }
+
+    // 顯示 Toast 提示
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.remove('opacity-0', '-translate-y-2');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', '-translate-y-2');
+      }, 2600);
+    }
+
+    // 初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTimeline('all');
+      renderChecklist();
+      calculateSplit();
+    });
+  </script>
+</body>
+</html>
