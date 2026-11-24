@@ -151,9 +151,9 @@
         <div class="flex items-center justify-between text-[11px] tracking-[0.16em] text-earth uppercase font-num mb-1">
           <span class="flex items-center gap-1.5">
             <span class="text-lannagold">❖</span>
-            <span>LANNA SLOW TRAVEL · CHIANG MAI</span>
+            <span>SLOW TRAVEL · CHIANG MAI</span>
           </span>
-          <span class="bg-lannagold-light text-lannagold border border-lannagold/25 px-2 py-0.5 rounded font-semibold">5 DAYS 4 NIGHTS</span>
+          <span class="bg-lannagold-light text-lannagold border border-lannagold/25 px-2 py-0.5 rounded font-semibold">4 DAYS 4 NIGHTS</span>
         </div>
 
         <!-- 主標題與日期 -->
@@ -175,7 +175,7 @@
           <div class="flex items-center gap-2 text-xs text-earth font-num">
             <span class="font-semibold text-teak">01.25 (一) – 01.30 (六)</span>
             <span class="text-teakborder">|</span>
-            <span class="text-palm font-medium">Darley Hotel 连住 4 晚</span>
+            <span class="text-palm font-medium">Darley Hotel 住 4 晚</span>
           </div>
         </div>
 
@@ -223,7 +223,7 @@
           <!-- 航班卡片 -->
           <div class="md:col-span-7 bg-card border border-teakborder rounded-2xl p-4 shadow-lanna flex flex-col justify-between relative overflow-hidden">
             <div class="flex items-center justify-between text-[11px] font-num font-semibold tracking-wider text-thaimilk uppercase mb-2">
-              <span class="flex items-center gap-1.5">✈️ FLIGHT SCHEDULE · 桃園第一航廈</span>
+              <span class="flex items-center gap-1.5">✈️ FLIGHT SCHEDULE</span>
               <span class="bg-thaimilk-light px-2 py-0.5 rounded">TPE ⇄ CNX</span>
             </div>
             <div class="grid grid-cols-2 gap-3 pt-1">
@@ -325,7 +325,7 @@
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
             <div>
               <span class="text-[11px] font-num tracking-widest text-palm uppercase font-semibold">PACKING LIST · JAN COOL SEASON</span>
-              <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">清邁行李必帶物品清單</h2>
+              <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">行李物品清單</h2>
               <p class="text-xs text-earth mt-0.5">點擊項目直接畫線標記「已裝箱」（無誤刪風險），1/29 回程收行李時可一鍵取消畫線重新核對！</p>
             </div>
             <div class="flex flex-wrap items-center gap-2 self-start sm:self-center">
@@ -352,6 +352,7 @@
           <!-- 新增行李項目 -->
           <form onsubmit="handleAddPacking(event)" class="mt-4 pt-4 border-t border-teakborder flex flex-col sm:flex-row gap-2">
             <select id="new-pack-cat" class="px-3 py-2.5 rounded-xl bg-silk border border-teakborder text-xs font-medium text-teak focus:outline-none focus:border-palm">
+              <option value="重要必帶">⚠️ 重要必帶</option>
               <option value="證件與換匯現金">🛂 證件與換匯現金</option>
               <option value="電子與網卡">🔌 電子與網卡</option>
               <option value="衣物與1月早晚溫差">🧥 衣物與1月早晚溫差</option>
@@ -373,8 +374,8 @@
       <section id="panel-notes" class="tab-panel hidden space-y-5">
         <div class="bg-card border border-teakborder rounded-2xl p-4 sm:p-5 shadow-lanna">
           <span class="text-[11px] font-num tracking-widest text-lannagold uppercase font-semibold">CHIANG MAI TRAVEL GUIDE</span>
-          <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">清邁旅遊重要注意事項＆貼心叮嚀</h2>
-          <p class="text-xs text-earth mt-0.5">針對 1 月底清邁氣候、換匯規定、寺廟禮儀、叫車與紅眼班機退稅整理的實用提醒。</p>
+          <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">重要注意事項＆貼心叮嚀</h2>
+          <p class="text-xs text-earth mt-0.5">清邁氣候、換匯規定、叫車與紅眼班機退稅整理的實用提醒。</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -386,7 +387,7 @@
             </div>
             <h3 class="font-serif font-bold text-base text-teak">護照正本隨身帶、台幣大鈔最划算</h3>
             <ul class="text-xs sm:text-sm text-earth space-y-2 leading-relaxed list-disc pl-4">
-              <li><strong class="text-teak">泰國入境免簽與現金抽查：</strong>台灣護照享有泰國免簽待遇（護照效期須滿 6 個月以上）；海關規定每人須備妥等值 <strong class="text-teak">10,000 泰銖</strong>（或每家庭 20,000 泰銖）的等值外幣現金以備抽查。</li>
+              <li><strong class="text-teak">泰國入境免簽與現金抽查：</strong>台灣護照享有泰國免簽待遇（護照效期須滿 6 個月以上）；海關規定每人須備妥等值 <strong class="text-teak">20,000 泰銖</strong>（或每家庭 40,000 泰銖）的等值外幣現金以備抽查。</li>
               <li><strong class="text-teak">1/26 早上換錢必備：</strong>前往 Mr. Pierre 或 Nakhonping Exchange 換錢時，<strong class="text-thaimilk">務必攜帶「護照正本」</strong>供櫃檯登記，並準備乾淨無折損、無塗鴉的<strong class="text-teak">台幣 1,000 元大鈔</strong>，匯率最漂亮。</li>
             </ul>
           </div>
@@ -426,7 +427,7 @@
             <h3 class="font-serif font-bold text-base text-teak">Bolt + Grab 雙開最省錢，備好小鈔</h3>
             <ul class="text-xs sm:text-sm text-earth space-y-2 leading-relaxed list-disc pl-4">
               <li><strong class="text-teak">優先用 Bolt 叫車：</strong>清邁市區短程叫車首選 <strong class="text-teak">Bolt</strong>（價格比 Grab 便宜約 20–30%，車資約 60–100 泰銖），叫不到車時再用 <strong class="text-teak">Grab</strong> 備援。</li>
-              <li><strong class="text-teak">素帖山下山交通：</strong>1/27 上山直接叫車到雙龍寺門口；下山若山上叫不到網約車，寺廟門口有官方「紅色雙條車」固定班次下山，搭到山腳再叫車即可。</li>
+              <li><strong class="text-teak">素帖山下山交通：</strong>1/27 上山直接叫車到雙龍寺門口；下山若山上叫不到車，寺廟門口有官方「紅色雙條車」固定班次下山，搭到山腳再叫車即可。</li>
               <li><strong class="text-teak">多換 100 / 20 泰銖小鈔：</strong>夜市小吃、市集與付現金叫車時，攤商與司機常找不開 1,000 泰銖大鈔，在超商買飲料可順便把大鈔找開。</li>
             </ul>
           </div>
@@ -457,9 +458,9 @@
         <div class="bg-card border border-teakborder rounded-2xl p-4 sm:p-5 shadow-lanna">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-teakborder">
             <div>
-              <span class="text-[11px] font-num tracking-widest text-lannagold uppercase font-semibold">CHIANG MAI SHOPPING WISHLIST</span>
-              <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">清邁必買購物＆伴手禮清單</h2>
-              <p class="text-xs text-earth mt-0.5">勾選前方核取方塊即可畫線標記已購入（無誤刪風險），點擊右側編輯圖示可隨時修改品項或數量。</p>
+              <span class="text-[11px] font-num tracking-widest text-lannagold uppercase font-semibold">SHOPPING WISHLIST</span>
+              <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">伴手禮清單</h2>
+              <p class="text-xs text-earth mt-0.5">勾選方塊即可畫線標記已購入，點擊右側編輯圖示可隨時修改品項或數量。</p>
             </div>
             <div class="flex items-center gap-2 self-start sm:self-center">
               <span id="shopping-summary-text" class="text-xs font-num font-semibold px-3 py-1.5 rounded-full bg-bamboo text-teak">已購入 0 / 0</span>
@@ -472,11 +473,11 @@
           <!-- 新增購物項目表單 -->
           <form onsubmit="handleAddShopping(event)" class="mt-4 flex flex-col sm:flex-row gap-2">
             <select id="new-shop-tag" class="px-3 py-2.5 rounded-xl bg-silk border border-teakborder text-xs font-medium text-teak focus:outline-none focus:border-palm">
-              <option value="食物">🍿 食物</option>
+              <option value="食物" selected>🍿 食物</option>
               <option value="用品">🧸 用品</option>
-              <option value="其他" selected>🛍️ 其他</option>
+              <option value="其他">🛍️ 其他</option>
             </select>
-            <input id="new-shop-input" type="text" placeholder="新增想買的商品（例如：手標泰奶鐵罐、薄荷鼻通 2 排、大象褲...）" required
+            <input id="new-shop-input" type="text" placeholder="新增想買的商品" required
               class="flex-1 px-3.5 py-2.5 rounded-xl bg-silk border border-teakborder text-sm text-teak placeholder:text-sandmuted focus:outline-none focus:border-palm" />
             <button type="submit" class="px-5 py-2.5 rounded-xl bg-lannagold text-white text-sm font-medium hover:bg-lannagold/90 active:scale-[0.98] transition shrink-0 shadow-xs">
               + 新增商品
@@ -497,7 +498,7 @@
 
     <!-- 頁尾 -->
     <footer class="border-t border-teakborder bg-bamboo/50 mt-10 py-6 px-4 text-center">
-      <p class="font-serif text-xs text-teak tracking-wider">CHIANG MAI LANNA SLOW JOURNEY · 01.25 – 01.30</p>
+      <p class="font-serif text-xs text-teak tracking-wider">CHIANG MAI SLOW JOURNEY · 01.25 – 01.30</p>
       <p class="text-[11px] text-sandmuted mt-1">願這趟清邁慢旅充滿陽光、泰奶香氣、市集笑聲與療癒的精油按摩。</p>
     </footer>
 
@@ -710,6 +711,11 @@
 
       // ==================== 3. 預設行李清單 (純畫線不刪除) ====================
       const DEFAULT_PACKING = [
+        // 重要必帶
+        { id: 'p1', cat: '重要必帶', text: '護照正本', packed: false },
+        { id: 'p2', cat: '重要必帶', text: '手機', packed: false },
+        { id: 'p3', cat: '重要必帶', text: '等值 20,000 泰銖的現金', packed: false },
+        { id: 'p4', cat: '重要必帶', text: '充電器', packed: false },
         // 證件與換匯現金
         { id: 'p1', cat: '證件與換匯現金', text: '護照正本（⚠️ 1/26 換錢所登記 ＆ 購物退稅必備，務必隨身攜帶）', packed: false },
         { id: 'p2', cat: '證件與換匯現金', text: '台幣千元大鈔（乾淨無折損，供換匯及符合泰國入境現金規範）', packed: false },
@@ -738,21 +744,19 @@
       ];
 
       // ==================== 4. 預設購物清單 (與行前準備相同互動邏輯) ====================
-      const DEFAULT_SHOPPING = [
-        { id: 's1', tag: '瓦洛洛市場', text: '厚肉龍眼乾（金黃無核龍眼乾，市場一樓可試吃比價）', done: false },
-        { id: 's2', tag: '瓦洛洛市場', text: '無糖 / 微糖芒果乾 ＆ 草莓乾', done: false },
-        { id: 's3', tag: '瓦洛洛市場', text: '泰國皇家蜂蜜（條裝軟管，泡奶茶或淋吐司超方便）', done: false },
-        { id: 's4', tag: 'Big C 超市', text: '手標泰式奶茶粉 / 經典紅罐茶葉', done: false },
-        { id: 's5', tag: 'Big C 超市', text: '小老闆海苔捲、Pocky 泰奶/芒果限定口味、大哥花生豆', done: false },
-        { id: 's6', tag: 'Big C 超市', text: '薄荷鼻通（POY-SIAN）、臥佛牌青草膏、蛇牌涼感爽身粉', done: false },
-        { id: 's7', tag: '寧曼 / 瑪雅', text: 'Herb Basics 天然精油、香氛擴香與護手霜（尼曼一號分店）', done: false },
-        { id: 's8', tag: '市集 / 藤編街', text: '手工竹編包 / 草編野餐籃、大象印花棉麻褲或藍染服飾', done: false }
-      ];
+        const DEFAULT_SHOPPING = [
+          { id: 's1', tag: '食物', text: '大哥花生豆', done: false },
+          { id: 's2', tag: '食物', text: '芒果乾', done: false },
+          { id: 's3', tag: '食物', text: '泰國皇家蜂蜜（條裝軟管）', done: false },
+          { id: 's4', tag: '用品', text: '大象褲', done: false },
+          { id: 's5', tag: '用品', text: '薄荷鼻通', done: false },
+          { id: 's6', tag: '用品', text: '酸痛藥膏', done: false },
+        ];
 
       // ==================== 狀態與 LocalStorage 管理 ====================
       const STORAGE_KEYS = {
         TODOS: 'cnx_lanna_2027_todos_v1',
-        PACKING: 'cnx_lanna_2027_packing_v1',
+        PACKING: 'cnx_lanna_2027_packing_v2',
         SHOPPING: 'cnx_lanna_2027_shopping_v1'
       };
 
@@ -763,6 +767,7 @@
       let currentTodoFilter = 'all';
       let currentShopFilter = 'all';
       let editingTodoId = null;
+      let editingPackId = null;
       let editingShopId = null;
       let hidePackedItems = false;
 
@@ -1063,6 +1068,36 @@
         showToast('已全部取消畫線，回程可重新核對行李！');
       }
 
+      function startEditPacking(id) {
+        editingPackId = id;
+        renderPacking();
+        const inputEl = document.getElementById(`edit-pack-input-${id}`);
+        if (inputEl) {
+          inputEl.focus();
+          inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
+        }
+      }
+
+      function saveEditPacking(id) {
+        const inputEl = document.getElementById(`edit-pack-input-${id}`);
+        if (inputEl) {
+          const newText = inputEl.value.trim();
+          if (newText) {
+            const item = packing.find(p => p.id === id);
+            if (item) item.text = newText;
+            savePacking();
+            showToast('已更新行李項目');
+          }
+        }
+        editingPackId = null;
+        renderPacking();
+      }
+
+      function cancelEditPacking() {
+        editingPackId = null;
+        renderPacking();
+      }
+
       function toggleHidePacked() {
         hidePackedItems = !hidePackedItems;
         const btn = document.getElementById('btn-hide-packed');
@@ -1088,6 +1123,7 @@
         document.getElementById('packing-progress-bar').style.width = `${pct}%`;
 
         const categories = [
+          { name: '重要必帶', icon: '⚠️', accent: 'text-thaimilk' },
           { name: '證件與換匯現金', icon: '🛂', accent: 'text-thaimilk' },
           { name: '電子與網卡', icon: '🔌', accent: 'text-lannagold' },
           { name: '衣物與1月早晚溫差', icon: '🧥', accent: 'text-palm' },
@@ -1115,14 +1151,35 @@
               <div class="space-y-2 flex-1">
                 ${visibleItems.length === 0 ? `
                   <p class="text-xs text-palm py-3 text-center bg-palm-light/50 rounded-xl">🎉 本分類物品已全數打包完成！</p>
-                ` : visibleItems.map(item => `
-                  <label class="flex items-start gap-2.5 p-1.5 -mx-1.5 rounded-xl cursor-pointer select-none transition hover:bg-bamboo/60 ${item.packed ? 'opacity-65' : ''}">
-                    <input type="checkbox" ${item.packed ? 'checked' : ''} onchange="togglePacking('${item.id}')" class="thai-checkbox mt-0.5" />
-                    <span class="text-xs sm:text-sm leading-snug transition ${item.packed ? 'line-through decoration-thaimilk/80 decoration-2 text-sandmuted' : 'text-teak'}">
-                      ${item.text}
-                    </span>
-                  </label>
-                `).join('')}
+                ` : visibleItems.map(item => {
+                  const isEditing = editingPackId === item.id;
+                  return `
+                    <div class="flex items-start justify-between gap-2 p-1.5 -mx-1.5 rounded-xl transition hover:bg-bamboo/60 ${item.packed ? 'opacity-65' : ''}">
+                      <div class="flex items-start gap-2.5 flex-1 min-w-0">
+                        <input type="checkbox" ${item.packed ? 'checked' : ''} onchange="togglePacking('${item.id}')" class="thai-checkbox mt-0.5" />
+                        ${isEditing ? `
+                          <div class="flex-1 flex flex-wrap items-center gap-1.5">
+                            <input id="edit-pack-input-${item.id}" type="text" value="${item.text.replace(/"/g, '&quot;')}"
+                              onkeydown="if(event.key==='Enter'){saveEditPacking('${item.id}')}else if(event.key==='Escape'){cancelEditPacking()}"
+                              class="flex-1 min-w-[120px] px-2.5 py-1 rounded-lg bg-silk border border-palm text-xs sm:text-sm text-teak focus:outline-none" />
+                            <button onclick="saveEditPacking('${item.id}')" class="px-2.5 py-1 rounded-lg bg-palm text-silk text-xs font-medium shrink-0">儲存</button>
+                            <button onclick="cancelEditPacking()" class="px-2 py-1 rounded-lg bg-bamboo text-earth text-xs shrink-0">取消</button>
+                          </div>
+                        ` : `
+                          <span onclick="togglePacking('${item.id}')" class="flex-1 text-xs sm:text-sm leading-snug cursor-pointer select-none break-words transition ${item.packed ? 'line-through decoration-thaimilk/80 decoration-2 text-sandmuted' : 'text-teak'}">
+                            ${item.text}
+                          </span>
+                        `}
+                      </div>
+
+                      ${!isEditing ? `
+                        <button onclick="startEditPacking('${item.id}')" class="p-1.5 -mt-0.5 rounded-lg text-earth hover:text-teak hover:bg-bamboo transition shrink-0" title="修改行李名稱">
+                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        </button>
+                      ` : ''}
+                    </div>
+                  `;
+                }).join('')}
               </div>
             </div>
           `;
