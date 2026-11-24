@@ -144,6 +144,36 @@
       </div>
     </div>
 
+    <!-- 自訂刪除確認視窗 -->
+    <div id="delete-modal" onclick="closeDeleteModal()" class="fixed inset-0 z-50 bg-teak/55 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div onclick="event.stopPropagation()" class="bg-card border border-teakborder rounded-3xl max-w-sm w-full p-5 sm:p-6 shadow-float space-y-4">
+        <div class="flex items-center gap-2.5 text-thaimilk">
+          <div class="w-9 h-9 rounded-full bg-thaimilk-light flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          </div>
+          <div>
+            <span class="text-[10px] font-num tracking-widest uppercase font-semibold block">CONFIRM DELETE</span>
+            <h3 class="font-serif font-bold text-base sm:text-lg text-teak">確定要刪除此項目嗎？</h3>
+          </div>
+        </div>
+
+        <div class="bg-silk border border-teakborder rounded-xl p-3">
+          <p id="delete-modal-text" class="text-xs sm:text-sm text-teak font-medium break-words leading-relaxed"></p>
+        </div>
+
+        <p class="text-xs text-earth">刪除後將從清單中移除。</p>
+
+        <div class="flex items-center justify-end gap-2 pt-1">
+          <button onclick="closeDeleteModal()" class="px-4 py-2 rounded-xl bg-bamboo text-earth hover:text-teak text-xs sm:text-sm font-medium transition">
+            取消
+          </button>
+          <button onclick="confirmDeleteItem()" class="px-4 py-2 rounded-xl bg-thaimilk text-white hover:bg-thaimilk/90 text-xs sm:text-sm font-medium transition shadow-xs">
+            確定刪除
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- 頂部導覽與刊頭 Header -->
     <header class="sticky top-0 z-40 bg-silk/95 backdrop-blur-md border-b border-teakborder">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-3 pb-2">
@@ -245,16 +275,16 @@
             <div>
               <div class="flex items-center justify-between text-[11px] font-num font-semibold tracking-wider text-palm uppercase mb-1.5">
                 <span>🏠 ACCOMMODATION</span>
-                <span class="bg-palm-light px-2 py-0.5 rounded">連住 4 晚</span>
+                <span class="bg-palm-light px-2 py-0.5 rounded">住 4 晚</span>
               </div>
-              <h2 class="font-serif font-bold text-base sm:text-lg text-teak">Darley Hotel Chiang Mai</h2>
+              <h2 class="font-serif font-bold text-base sm:text-lg text-teak">Darley Hotel</h2>
               <p class="text-xs text-earth mt-1 leading-relaxed">
-                距離清邁國際機場開車約 <strong class="text-teak">16 分鐘</strong>，出門即藤編一條街，步行 3 分鐘達瓦洛洛市場。
+                距離清邁國際機場開車約 <strong class="text-teak">16 分鐘</strong>。
               </p>
             </div>
             <div class="mt-3 pt-2.5 border-t border-teakborder/70 flex items-center justify-between text-[11px] text-lannagold font-medium">
-              <span>📍 1/29 退房可免費寄放行李</span>
-              <span>22:40 抵達機場</span>
+              <span>📍 1/29 退房時寄放行李</span>
+              <span>📌 預計22:40 抵達機場</span>
             </div>
           </div>
         </div>
@@ -282,7 +312,7 @@
             <div>
               <span class="text-[11px] font-num tracking-widest text-thaimilk uppercase font-semibold">PRE-TRIP PREPARATION</span>
               <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">行前須完成準備事項</h2>
-              <p class="text-xs text-earth mt-0.5">勾選前方核取方塊即可畫線標記完成（已移除刪除按鈕防止誤刪），點擊右側編輯圖示可隨時修改內容。</p>
+              <p class="text-xs text-earth mt-0.5">勾選前方核取方塊即可畫線標記完成 (已移除刪除按鈕防止誤刪)，點擊右側編輯圖示可隨時修改內容。</p>
             </div>
             <div class="flex items-center gap-2 self-start sm:self-center">
               <span id="todo-summary-text" class="text-xs font-num font-semibold px-3 py-1.5 rounded-full bg-bamboo text-teak">已完成 0 / 0</span>
@@ -301,7 +331,7 @@
               <option value="App預約">📱 App預約</option>
               <option value="其他備忘" selected>🪷 其他備忘</option>
             </select>
-            <input id="new-todo-input" type="text" placeholder="新增行前準備事項（例如：KKday 機場接送憑證、預約按摩...）" required
+            <input id="new-todo-input" type="text" placeholder="新增行前準備事項 (例如：KKday 機場接送憑證、預約按摩...)" required
               class="flex-1 px-3.5 py-2.5 rounded-xl bg-silk border border-teakborder text-sm text-teak placeholder:text-sandmuted focus:outline-none focus:border-palm" />
             <button type="submit" class="px-5 py-2.5 rounded-xl bg-thaimilk text-white text-sm font-medium hover:bg-thaimilk/90 active:scale-[0.98] transition shrink-0 shadow-xs">
               + 新增項目
@@ -326,7 +356,7 @@
             <div>
               <span class="text-[11px] font-num tracking-widest text-palm uppercase font-semibold">PACKING LIST · JAN COOL SEASON</span>
               <h2 class="font-serif text-lg sm:text-xl font-bold text-teak mt-0.5">行李物品清單</h2>
-              <p class="text-xs text-earth mt-0.5">點擊項目直接畫線標記「已裝箱」（無誤刪風險），1/29 回程收行李時可一鍵取消畫線重新核對！</p>
+              <p class="text-xs text-earth mt-0.5">點擊項目直接畫線標記「已裝箱」 (無誤刪風險)，1/29 回程收行李時可一鍵取消畫線重新核對！</p>
             </div>
             <div class="flex flex-wrap items-center gap-2 self-start sm:self-center">
               <button onclick="toggleHidePacked()" id="btn-hide-packed" class="text-xs px-3 py-1.5 rounded-xl bg-bamboo text-teak hover:bg-teakborder font-medium transition">
@@ -359,7 +389,7 @@
               <option value="洗漱與防蚊常備藥">🧴 洗漱與防蚊常備藥</option>
               <option value="清邁旅行神物">🐘 清邁旅行神物</option>
             </select>
-            <input id="new-pack-input" type="text" placeholder="新增自訂行李物品（例如：拍立得、太陽眼鏡...）" required
+            <input id="new-pack-input" type="text" placeholder="新增自訂行李物品 (例如：拍立得、太陽眼鏡...)" required
               class="flex-1 px-3.5 py-2.5 rounded-xl bg-silk border border-teakborder text-sm text-teak placeholder:text-sandmuted focus:outline-none focus:border-palm" />
             <button type="submit" class="px-5 py-2.5 rounded-xl bg-palm text-silk text-sm font-medium hover:bg-palm/90 active:scale-[0.98] transition shrink-0 shadow-xs">
               + 加入行李
@@ -387,7 +417,7 @@
             </div>
             <h3 class="font-serif font-bold text-base text-teak">護照正本隨身帶、台幣大鈔最划算</h3>
             <ul class="text-xs sm:text-sm text-earth space-y-2 leading-relaxed list-disc pl-4">
-              <li><strong class="text-teak">泰國入境免簽與現金抽查：</strong>台灣護照享有泰國免簽待遇（護照效期須滿 6 個月以上）；海關規定每人須備妥等值 <strong class="text-teak">20,000 泰銖</strong>（或每家庭 40,000 泰銖）的等值外幣現金以備抽查。</li>
+              <li><strong class="text-teak">泰國入境免簽與現金抽查：</strong>台灣護照享有泰國免簽待遇 (護照效期須滿 6 個月以上)；海關規定每人須備妥等值 <strong class="text-teak">20,000 泰銖</strong> (或每家庭 40,000 泰銖)的等值外幣現金以備抽查。</li>
               <li><strong class="text-teak">1/26 早上換錢必備：</strong>前往 Mr. Pierre 或 Nakhonping Exchange 換錢時，<strong class="text-thaimilk">務必攜帶「護照正本」</strong>供櫃檯登記，並準備乾淨無折損、無塗鴉的<strong class="text-teak">台幣 1,000 元大鈔</strong>，匯率最漂亮。</li>
             </ul>
           </div>
@@ -400,7 +430,7 @@
             </div>
             <h3 class="font-serif font-bold text-base text-teak">涼爽乾季日夜溫差大，上素帖山要加外套</h3>
             <ul class="text-xs sm:text-sm text-earth space-y-2 leading-relaxed list-disc pl-4">
-              <li><strong class="text-teak">日夜溫差達 10°C：</strong>1 月底是清邁最舒服的乾季，白天陽光溫暖約 <strong class="text-teak">27–29°C</strong>（穿短袖+防曬薄襯衫最剛好），但清晨與深夜會降至 <strong class="text-teak">15–18°C</strong>。</li>
+              <li><strong class="text-teak">日夜溫差達 10°C：</strong>1 月底是清邁最舒服的乾季，白天陽光溫暖約 <strong class="text-teak">27–29°C</strong> (穿短袖+防曬薄襯衫最剛好)，但清晨與深夜會降至 <strong class="text-teak">15–18°C</strong>。</li>
               <li><strong class="text-teak">素帖山雙龍寺保暖：</strong>1/27 早上前往素帖山海拔較高，山頂微涼有風，建議隨身帶一件<strong class="text-palm">防風薄外套或針織開襟衫</strong>。</li>
             </ul>
           </div>
@@ -413,7 +443,7 @@
             </div>
             <h3 class="font-serif font-bold text-base text-teak">1/26 古城三寺 ＆ 1/27 雙龍寺穿搭提醒</h3>
             <ul class="text-xs sm:text-sm text-earth space-y-2 leading-relaxed list-disc pl-4">
-              <li><strong class="text-teak">不露肩、過膝蓋：</strong>進入帕邢寺、柴迪隆寺、布帕蘭寺與雙龍寺時，嚴禁穿著無袖背心、細肩帶、短褲或短裙（即使膝上短褲也不行），建議穿長褲、長裙或隨身帶大絲巾遮蓋。</li>
+              <li><strong class="text-teak">不露肩、過膝蓋：</strong>進入帕邢寺、柴迪隆寺、布帕蘭寺與雙龍寺時，嚴禁穿著無袖背心、細肩帶、短褲或短裙 (即使膝上短褲也不行)，建議穿長褲、長裙或隨身帶大絲巾遮蓋。</li>
               <li><strong class="text-teak">脫鞋入殿：</strong>進入佛殿前需在門口脫鞋整齊放好，建議穿著好穿脫的鞋款與乾淨襪子。</li>
             </ul>
           </div>
@@ -426,7 +456,7 @@
             </div>
             <h3 class="font-serif font-bold text-base text-teak">Bolt + Grab 雙開最省錢，備好小鈔</h3>
             <ul class="text-xs sm:text-sm text-earth space-y-2 leading-relaxed list-disc pl-4">
-              <li><strong class="text-teak">優先用 Bolt 叫車：</strong>清邁市區短程叫車首選 <strong class="text-teak">Bolt</strong>（價格比 Grab 便宜約 20–30%，車資約 60–100 泰銖），叫不到車時再用 <strong class="text-teak">Grab</strong> 備援。</li>
+              <li><strong class="text-teak">優先用 Bolt 叫車：</strong>清邁市區短程叫車首選 <strong class="text-teak">Bolt</strong> (價格比 Grab 便宜約 20–30%，車資約 60–100 泰銖)，叫不到車時再用 <strong class="text-teak">Grab</strong> 備援。</li>
               <li><strong class="text-teak">素帖山下山交通：</strong>1/27 上山直接叫車到雙龍寺門口；下山若山上叫不到車，寺廟門口有官方「紅色雙條車」固定班次下山，搭到山腳再叫車即可。</li>
               <li><strong class="text-teak">多換 100 / 20 泰銖小鈔：</strong>夜市小吃、市集與付現金叫車時，攤商與司機常找不開 1,000 泰銖大鈔，在超商買飲料可順便把大鈔找開。</li>
             </ul>
@@ -442,11 +472,11 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-earth leading-relaxed">
               <div class="bg-silk rounded-xl p-3 border border-teakborder/70">
                 <p class="font-bold text-teak mb-1">1. 退房後與搭機前洗漱</p>
-                <p>1/29 中午 12:00 退房後，將行李免費寄放在 <strong class="text-teak">Darley Hotel</strong> 櫃檯；晚上 19:30–21:30 強烈建議預約一間<strong class="text-palm">附淋浴間的精油 SPA 館</strong>（如 Fah Lanna Spa 或 Makkha Health & Spa），按完摩沖個熱水澡再拿行李去機場</p>
+                <p>1/29 中午 12:00 退房後，將行李免費寄放在 <strong class="text-teak">Darley Hotel</strong> 櫃檯；晚上 19:30–21:30 強烈建議預約一間<strong class="text-palm">附淋浴間的精油 SPA 館</strong> (如 Fah Lanna Spa 或 Makkha Health & Spa)，按完摩沖個熱水澡再拿行李去機場</p>
               </div>
               <div class="bg-silk rounded-xl p-3 border border-teakborder/70">
-                <p class="font-bold text-teak mb-1">2. 退稅單蓋章順序（先蓋章再託運！）</p>
-                <p>在 Big C、MAYA 百貨或尚泰百貨單筆滿 <strong class="text-teak">2,000 泰銖</strong>，結帳時出示護照填寫黃色退稅單（P.P.10）。22:40 抵達清邁機場後，<strong class="text-thaimilk">務必先到海關辦公室（VAT Refund）蓋章</strong>再辦理行李託運，過完安檢後再到退稅櫃檯領取現金。</p>
+                <p class="font-bold text-teak mb-1">2. 退稅單蓋章順序 (先蓋章再託運！)</p>
+                <p>在 Big C、MAYA 百貨或尚泰百貨單筆滿 <strong class="text-teak">2,000 泰銖</strong>，結帳時出示護照填寫黃色退稅單 (P.P.10)。22:40 抵達清邁機場後，<strong class="text-thaimilk">務必先到海關辦公室 (VAT Refund)蓋章</strong>再辦理行李託運，過完安檢後再到退稅櫃檯領取現金。</p>
               </div>
             </div>
           </div>
@@ -512,25 +542,31 @@
           badge: '深夜抵達',
           badgeStyle: 'bg-lotus-light text-lotus border-lotus/25',
           title: '飛往清邁 · 機場接送直達飯店',
-          stay: 'Darley Hotel Chiang Mai（離機場開車約 16 分鐘）',
+          stay: 'Darley Hotel (離機場開車約 16 分鐘)',
           events: [
             {
-              time: '18:55 – 22:00',
+              time: '16:30',
+              tag: '集合時間',
+              title: '桃園機場第一航廈',
+              desc: '提前 2.5 小時抵達桃園機場。'
+            },
+            {
+              time: '18:55 - 22:00',
               tag: '去程航班',
               title: '桃園第一航廈 ➔ 清邁國際機場 (CNX)',
-              desc: '建議提前 2.5 小時抵達桃園機場一航廈辦理登機，隨身攜帶保暖薄外套以備機上與清邁深夜涼意。'
+              desc: '攜帶護照辦理登機，隨身攜帶保暖薄外套以備清邁深夜涼意。'
             },
             {
               time: '22:30',
               tag: '專屬接送',
               title: '搭乘 KKday 機場接送前往飯店',
-              desc: '入境領完行李後依憑證指示會合司機（車程約 16 分鐘直達飯店），若深夜想吃宵夜，飯店周邊巷口有 7-11 可買熱壓吐司與泰奶。'
+              desc: '入境領完行李後依憑證指示會合司機 (車程約 16 分鐘直達飯店)。'
             },
             {
               time: '23:00',
               tag: '辦理入住',
-              title: 'Darley Hotel 辦理 Check-in 休息',
-              desc: '出示護照與訂房憑證辦理入住，好好補眠迎接明天精神滿滿的古城步行日！'
+              title: '辦理 Check-in 休息',
+              desc: '出示護照與訂房憑證辦理入住，好好補眠迎接明天古城日！'
             }
           ]
         },
@@ -540,39 +576,46 @@
           date: '1/26 (二)',
           badge: '古城+夜市',
           badgeStyle: 'bg-palm-light text-palm border-palm/25',
-          title: '換匯早午餐 · 古城四寺巡禮與清邁夜市掃貨',
-          stay: 'Darley Hotel Chiang Mai',
-          note: '💡 順路小秘訣：下午照著「帕邢寺（西）➔ 柴迪隆寺（中）➔ 塔佩門（東）➔ 布帕蘭寺（東外圍）」由西向東直線散步，走完剛好直接接晚上的清邁夜市與 Big C，完全不走回頭路！',
+          title: '換匯 · 古城巡禮與清邁夜市',
+          stay: 'Darley Hotel',
+          note: '💡 順路小秘訣：下午照著「帕邢寺 (西)➔ 柴迪隆寺 (中)➔ 塔佩門 (東)➔ 布帕蘭寺 (東外圍)」由西向東直線散步，走完剛好直接接晚上的清邁夜市與 Big C，完全不走回頭路！',
           events: [
             {
-              time: '08:30',
+              time: '09:30',
               tag: '第一站換錢',
-              title: '走路去換錢（Mr. Pierre Money Exchange 或 Nakhonping Exchange）',
-              desc: '從飯店散步前往換錢所，務必攜帶「護照正本」與乾淨無折損的「台幣千元大鈔」以換取最優匯率。'
+              title: '走路去換錢 (Mr. Pierre Money Exchange 或 Nakhonping Exchange)',
+              desc: '走路約8-13分鐘，務必攜帶「護照正本」與無折損的「台幣千元大鈔」以換取最優匯率。',
+              maps: [
+                { name: 'Mr. Pierre Money Exchange', query: 'Mr. Pierre Money Exchange Chiang Mai' },
+                { name: 'Nakhonping Exchange', query: 'Nakhonping Exchange Chiang Mai' }
+              ]
             },
             {
-              time: '09:15',
+              time: '10:00',
               tag: '悠閒早餐',
-              title: '早餐：Breakfast by Rosy（就在 Nakhonping Exchange 附近）',
-              desc: '換完錢直接在旁邊享用豐盛早午餐與咖啡，補充上午體力（吃完可先散步回飯店整理隨身包，順便拍飯店門口的藤編一條街）。'
+              title: '早餐Breakfast by Rosy (在 Nakhonping Exchange 換錢所附近)',
+              desc: '換完錢直接在旁邊享用早餐。',
+              maps: [
+                { name: 'Breakfast by Rosy', query: 'Breakfast by Rosy' },
+              ]
             },
             {
-              time: '13:30',
+              time: '11:00',
               tag: '古城文化散步',
-              title: '帕邢寺 ➔ 柴迪隆寺 ➔ 塔佩門 ➔ 布帕蘭寺 + 泰式按摩',
+              title: '帕邢寺 ➔ 柴迪隆寺 ➔ 塔佩門 ➔ 布帕蘭寺 ➔ 按摩',
               desc: '建議叫 Bolt 直達最西邊的「帕邢寺」開始往東順遊：「柴迪隆寺」看千年磚造大佛塔、「塔佩門」拍紅磚城牆與白鴿、出城門走 5 分鐘參觀《泰囧》拍攝地「布帕蘭寺」。走完雙腿微痠正好在周邊體驗 2 小時正宗泰式按摩！'
             },
             {
-              time: '19:00',
+              time: '17:00',
               tag: '夜市美食',
-              title: '清邁夜市（Chiang Mai Night Bazaar）',
-              desc: '按摩完往長康路方向散步即達清邁夜市（推薦旁邊氣氛超棒的 Ploen Ruedee 夜市），大吃炭烤海鮮、泰式串燒、香蕉煎餅與椰子冰淇淋。'
+              title: '清邁夜市',
+              desc: '按摩完往長康路方向散步即達清邁夜市。'
             },
             {
-              time: '21:00',
+              time: '19:00',
               tag: '伴手禮採購',
-              title: '購物：Big C（Big C Market Pantip Chiang Mai）➔ 搭車回飯店',
-              desc: '就在清邁夜市正對面（營業至 24:00）！吹冷氣一次掃齊小老闆海苔、手標泰奶、Pocky、鼻通與青草膏（滿 2,000 泰銖記得辦退稅），買完叫 Bolt 僅 5 分鐘直達飯店放戰利品！'
+              title: 'Big C 商場 (Big C Market Pantip Chiang Mai) ➔ 搭車回飯店',
+              desc: 'Big C 滿 2,000 泰銖記得辦退稅， 買完叫 Bolt 僅 5 分鐘直達飯店！'
             }
           ]
         },
@@ -583,7 +626,7 @@
           badge: '山林+寧曼',
           badgeStyle: 'bg-lannagold-light text-lannagold border-lannagold/25',
           title: '素帖山金塔全景 · 潮流寧曼商圈與靜心湖夕陽',
-          stay: 'Darley Hotel Chiang Mai',
+          stay: 'Darley Hotel',
           note: '💡 傍晚順序提醒：清邁大學靜心湖沒有路燈，務必抓 17:00–17:30 先去拍夕陽湖景，18:30 天黑後再走去旁邊的清邁大學夜市吃晚餐！',
           events: [
             {
@@ -596,24 +639,24 @@
               time: '09:45',
               tag: '經典地標',
               title: '素帖山雙龍寺',
-              desc: '叫 Bolt / Grab 上山（車程約 35 分鐘），早晨陽光灑在純金舍利佛塔上最為耀眼，還能在觀景台俯瞰整個清邁市區全景（記得穿著過膝、不露肩服裝）。'
+              desc: '叫 Bolt / Grab 上山 (車程約 35 分鐘)，早晨陽光灑在純金舍利佛塔上最為耀眼，還能在觀景台俯瞰整個清邁市區全景 (記得穿著過膝、不露肩服裝)。'
             },
             {
               time: '12:30',
               tag: '浮誇美食',
-              title: '中午：媽媽麵（Mae–Jin Thai Food & Bistro）',
+              title: '中午：媽媽麵 (Mae–Jin Thai Food & Bistro)',
               desc: '下山回到寧曼商圈享用料多味美的泰式海鮮冬蔭功媽媽麵，酸辣開胃超滿足。'
             },
             {
               time: '14:00',
               tag: '潮流逛街',
-              title: '瑪雅百貨（MAYA）+ 尼曼一號（One Nimman）+ 按摩',
-              desc: '先逛紅磚歐風廣場「尼曼一號」採買香氛品牌 Herb Basics 與文創設計選品，再到對面「瑪雅百貨」吹冷氣逛街（可順便喝冠軍拉花咖啡 Roast8ry），下午逛累了在寧曼路做質感精油按摩。'
+              title: '瑪雅百貨 (MAYA)+ 尼曼一號 (One Nimman)+ 按摩',
+              desc: '先逛紅磚歐風廣場「尼曼一號」採買香氛品牌 Herb Basics 與文創設計選品，再到對面「瑪雅百貨」吹冷氣逛街 (可順便喝冠軍拉花咖啡 Roast8ry)，下午逛累了在寧曼路做質感精油按摩。'
             },
             {
               time: '17:15',
               tag: '湖畔夕陽+夜市',
-              title: '清邁大學靜心湖 + 清邁大學夜市（Malin Plaza）',
+              title: '清邁大學靜心湖 + 清邁大學夜市 (Malin Plaza)',
               desc: '黃昏時分到「靜心湖」散步看素帖山倒映湖面的絕美夕陽；天黑後散步前往「清邁大學前門夜市」，體驗本地學生最愛的平價泰式火烤兩吃、現打果汁與平價服飾。'
             }
           ]
@@ -625,30 +668,30 @@
           badge: '在地生活',
           badgeStyle: 'bg-thaimilk-light text-thaimilk border-thaimilk/25',
           title: '瓦洛洛市場挖寶 · 網紅打拋飯與文青咖啡慢時光',
-          stay: 'Darley Hotel Chiang Mai',
+          stay: 'Darley Hotel',
           events: [
             {
               time: '09:30',
               tag: '百年傳統市場',
-              title: '逛逛：瓦洛洛市場（龍眼乾、芒果乾、皇家蜂蜜）',
+              title: '逛逛：瓦洛洛市場 (龍眼乾、芒果乾、皇家蜂蜜)',
               desc: '從飯店走路 3 分鐘即達！在清邁最大的百年市場盡情試吃厚肉龍眼乾、芒果乾、草莓乾、皇家蜂蜜與脆皮炸豬皮，買完直接提回飯店放超輕鬆。'
             },
             {
               time: '11:30',
               tag: '排隊名店',
-              title: '上午 / 中午：打拋飯（Kaprao Nueanuea Chang Moi）',
-              desc: '就在飯店與瓦洛洛市場轉角處！現炒香氣四溢的泰式打拋豬/牛搭配半熟炸鴨蛋，辣度夠勁超下飯（周邊也有多間泰北金麵老店可一起分食）。'
+              title: '上午 / 中午：打拋飯 (Kaprao Nueanuea Chang Moi)',
+              desc: '就在飯店與瓦洛洛市場轉角處！現炒香氣四溢的泰式打拋豬/牛搭配半熟炸鴨蛋，辣度夠勁超下飯 (周邊也有多間泰北金麵老店可一起分食)。'
             },
             {
               time: '14:00',
               tag: '午後放空',
-              title: '下午：喝咖啡（推薦路線二選一）',
+              title: '下午：喝咖啡 (推薦路線二選一)',
               desc: '【選項 A】飯店門口「藤編一條街」拍網美照 + 旁邊文青咖啡館 Brewginning Coffee 喝冰美式。\n【選項 B】搭車 5 分鐘過橋到美濱河畔的殖民風粉紅老宅茶館 Vieng Joom On 喝下午茶。'
             },
             {
               time: '18:30',
               tag: '自由晚餐',
-              title: '晚上：隨意吃（推薦美濱河畔景觀餐廳）',
+              title: '晚上：隨意吃 (推薦美濱河畔景觀餐廳)',
               desc: '推薦前往飯店附近美濱河畔的 The Good View 或 The Riverside 餐廳，吹著涼爽晚風享用泰北料理並聽現場 Live Band 演唱，氣氛極佳！'
             }
           ]
@@ -673,13 +716,13 @@
               time: '11:45',
               tag: '退房+午餐',
               title: '回飯店退房寄放行李 ➔ 中午：市集周邊吃',
-              desc: '12:00 前返回 Darley Hotel 整理行李辦理退房並寄放櫃檯，中午在市集或飯店周邊享用道地泰北烤雞（SP Chicken）或泰北料理。'
+              desc: '12:00 前返回 Darley Hotel 整理行李辦理退房並寄放櫃檯，中午在市集或飯店周邊享用道地泰北烤雞 (SP Chicken)或泰北料理。'
             },
             {
               time: '14:30',
               tag: '吹冷氣血拚',
-              title: '下午：購物 + 尚泰百貨（Central Festival Chiang Mai）',
-              desc: '前往清邁規模最大的「尚泰百貨」吹冷氣進行最後採買，泰國本土設計師服飾、香氛、伴手禮與 B1 超市一次補齊（滿 2,000 泰銖記得索取黃色退稅單）。'
+              title: '下午：購物 + 尚泰百貨 (Central Festival Chiang Mai)',
+              desc: '前往清邁規模最大的「尚泰百貨」吹冷氣進行最後採買，泰國本土設計師服飾、香氛、伴手禮與 B1 超市一次補齊 (滿 2,000 泰銖記得索取黃色退稅單)。'
             },
             {
               time: '18:30',
@@ -690,8 +733,8 @@
             {
               time: '22:40 / 01:40',
               tag: '平安返台',
-              title: '22:40 抵達清邁機場 ➔ 1/30 (六) 01:40 起飛（06:15 抵桃園 1 航廈）',
-              desc: '22:00 回 Darley Hotel 領取行李出發（車程 16 分鐘），22:40 準時抵達清邁機場。若有退稅單「務必先找海關蓋章再託運行李」，開心滿載返台！'
+              title: '22:40 抵達清邁機場 ➔ 1/30 (六) 01:40 起飛 (06:15 抵桃園 1 航廈)',
+              desc: '22:00 回 Darley Hotel 領取行李出發 (車程 16 分鐘)，22:40 準時抵達清邁機場。若有退稅單「務必先找海關蓋章再託運行李」，開心滿載返台！'
             }
           ]
         }
@@ -699,12 +742,12 @@
 
       // ==================== 2. 預設行前準備事項 (無刪除功能，純畫線) ====================
       const DEFAULT_TODOS = [
-        { id: 't1', tag: '入境證件', text: '確認護照效期（1/25 出發日算起需有 6 個月以上效期）', done: false },
-        { id: 't2', tag: '接送票券', text: '訂購 1/25 深夜「清邁機場 ➔ Darley Hotel」KKday 機場接送（備註班機抵達時間 22:00）', done: false },
-        { id: 't3', tag: '網路換匯', text: '購買泰國上網 eSIM 或實體 SIM 卡（建議含泰國門號，方便叫車聯絡司機）', done: false },
-        { id: 't4', tag: '網路換匯', text: '準備乾淨無折損、無塗鴉的「台幣千元大鈔」（1/26 早上換錢所匯率最好，並備妥入境抽查現金）', done: false },
-        { id: 't5', tag: 'App預約', text: '下載叫車與翻譯 App：Bolt、Grab、Google 翻譯（離線泰文包）', done: false },
-        { id: 't6', tag: 'App預約', text: '預約 1/29 晚上搭機前的「附淋浴間泰式精油 SPA」（按完沖澡再搭紅眼班機）', done: false },
+        { id: 't1', tag: '入境證件', text: '確認護照效期 (1/25 出發日算起需有 6 個月以上效期)', done: false },
+        { id: 't2', tag: '接送票券', text: '訂購 1/25 深夜「清邁機場 ➔ Darley Hotel」KKday 機場接送 (備註班機抵達時間 22:00)', done: false },
+        { id: 't3', tag: '網路換匯', text: '購買泰國上網 eSIM 或實體 SIM 卡 (建議含泰國門號，方便叫車聯絡司機)', done: false },
+        { id: 't4', tag: '網路換匯', text: '準備乾淨無折損、無塗鴉的「台幣千元大鈔」 (1/26 早上換錢所匯率最好，並備妥入境抽查現金)', done: false },
+        { id: 't5', tag: 'App預約', text: '下載叫車與翻譯 App：Bolt、Grab、Google 翻譯 (離線泰文包)', done: false },
+        { id: 't6', tag: 'App預約', text: '預約 1/29 晚上搭機前的「附淋浴間泰式精油 SPA」 (按完沖澡再搭紅眼班機)', done: false },
         { id: 't7', tag: '其他備忘', text: '投保海外旅遊平安險 + 旅遊不便險', done: false },
         { id: 't8', tag: '其他備忘', text: '列印或手機截圖存好：來回電子機票、Darley Hotel 訂房確認單、KKday 接送憑證', done: false }
       ];
@@ -717,37 +760,37 @@
         { id: 'p3', cat: '重要必帶', text: '等值 20,000 泰銖的現金', packed: false },
         { id: 'p4', cat: '重要必帶', text: '充電器', packed: false },
         // 證件與換匯現金
-        { id: 'p1', cat: '證件與換匯現金', text: '護照正本（⚠️ 1/26 換錢所登記 ＆ 購物退稅必備，務必隨身攜帶）', packed: false },
-        { id: 'p2', cat: '證件與換匯現金', text: '台幣千元大鈔（乾淨無折損，供換匯及符合泰國入境現金規範）', packed: false },
-        { id: 'p3', cat: '證件與換匯現金', text: '身分證、健保卡 ＆ 海外高回饋信用卡（2 張不同發卡組織）', packed: false },
+        { id: 'p1', cat: '證件與換匯現金', text: '護照正本 (⚠️ 1/26 換錢所登記 ＆ 購物退稅必備，務必隨身攜帶)', packed: false },
+        { id: 'p2', cat: '證件與換匯現金', text: '台幣千元大鈔 (乾淨無折損，供換匯及符合泰國入境現金規範)', packed: false },
+        { id: 'p3', cat: '證件與換匯現金', text: '身分證、健保卡 ＆ 海外高回饋信用卡 (2 張不同發卡組織)', packed: false },
         { id: 'p4', cat: '證件與換匯現金', text: '電子機票、Darley Hotel 訂房單、KKday 機場接送憑證', packed: false },
         // 電子與網卡
-        { id: 'p5', cat: '電子與網卡', text: '行動電源（⚠️ 機身須清楚標示 Wh 容量、嚴禁託運、必須隨身手提上機）', packed: false },
+        { id: 'p5', cat: '電子與網卡', text: '行動電源 (⚠️ 機身須清楚標示 Wh 容量、嚴禁託運、必須隨身手提上機)', packed: false },
         { id: 'p6', cat: '電子與網卡', text: '泰國上網 eSIM QR Code 截圖或實體網卡 + SIM 卡針', packed: false },
-        { id: 'p7', cat: '電子與網卡', text: '手機充電線 ＆ 多孔充電器（泰國電壓 220V，台灣兩孔扁插頭可直接通用）', packed: false },
+        { id: 'p7', cat: '電子與網卡', text: '手機充電線 ＆ 多孔充電器 (泰國電壓 220V，台灣兩孔扁插頭可直接通用)', packed: false },
         // 衣物與1月早晚溫差
-        { id: 'p8', cat: '衣物與1月早晚溫差', text: '薄外套 / 防風針織外套（1 月底清邁早晚 16°C 涼爽，上素帖山必備）', packed: false },
-        { id: 'p9', cat: '衣物與1月早晚溫差', text: '寺廟參拜服裝（過膝長褲、長裙、有袖上衣 — 嚴禁無袖與膝上短褲）', packed: false },
-        { id: 'p10', cat: '衣物與1月早晚溫差', text: '白天夏季短袖、透氣棉麻洋裝或防曬薄襯衫（白天約 28°C 溫暖陽光）', packed: false },
-        { id: 'p11', cat: '衣物與1月早晚溫差', text: '好走又好穿脫的鞋子 + 乾淨襪子（古城步行多，進佛殿與按摩需脫鞋）', packed: false },
-        { id: 'p12', cat: '衣物與1月早晚溫差', text: '太陽眼鏡 ＆ 遮陽草帽（1 月乾季白天陽光耀眼，拍照也好看）', packed: false },
+        { id: 'p8', cat: '衣物與1月早晚溫差', text: '薄外套 / 防風針織外套 (1 月底清邁早晚 16°C 涼爽，上素帖山必備)', packed: false },
+        { id: 'p9', cat: '衣物與1月早晚溫差', text: '寺廟參拜服裝 (過膝長褲、長裙、有袖上衣 — 嚴禁無袖與膝上短褲)', packed: false },
+        { id: 'p10', cat: '衣物與1月早晚溫差', text: '白天夏季短袖、透氣棉麻洋裝或防曬薄襯衫 (白天約 28°C 溫暖陽光)', packed: false },
+        { id: 'p11', cat: '衣物與1月早晚溫差', text: '好走又好穿脫的鞋子 + 乾淨襪子 (古城步行多，進佛殿與按摩需脫鞋)', packed: false },
+        { id: 'p12', cat: '衣物與1月早晚溫差', text: '太陽眼鏡 ＆ 遮陽草帽 (1 月乾季白天陽光耀眼，拍照也好看)', packed: false },
         // 洗漱與防蚊常備藥
-        { id: 'p13', cat: '洗漱與防蚊常備藥', text: '腸胃藥、止瀉藥、暈車藥（清邁夜市小吃與上素帖山彎道備用）', packed: false },
+        { id: 'p13', cat: '洗漱與防蚊常備藥', text: '腸胃藥、止瀉藥、暈車藥 (清邁夜市小吃與上素帖山彎道備用)', packed: false },
         { id: 'p14', cat: '洗漱與防蚊常備藥', text: '防曬乳 ＆ 個人日常保養化妝品', packed: false },
-        { id: 'p15', cat: '洗漱與防蚊常備藥', text: '牙刷、牙膏 ＆ 洗面乳（泰國環保旅宿部分不主動提供一次性牙刷）', packed: false },
-        { id: 'p16', cat: '洗漱與防蚊常備藥', text: '防蚊液（傍晚去清邁大學靜心湖、椰林市集樹林多必備，也可當地 7-11 買）', packed: false },
+        { id: 'p15', cat: '洗漱與防蚊常備藥', text: '牙刷、牙膏 ＆ 洗面乳 (泰國環保旅宿部分不主動提供一次性牙刷)', packed: false },
+        { id: 'p16', cat: '洗漱與防蚊常備藥', text: '防蚊液 (傍晚去清邁大學靜心湖、椰林市集樹林多必備，也可當地 7-11 買)', packed: false },
         // 清邁旅行神物
-        { id: 'p17', cat: '清邁旅行神物', text: '輕便折疊購物袋（瓦洛洛市場買果乾、Big C 掃貨超好用）', packed: false },
-        { id: 'p18', cat: '清邁旅行神物', text: '酒精濕紙巾 ＆ 面紙（逛夜市、市集邊走邊吃清潔雙手）', packed: false },
-        { id: 'p19', cat: '清邁旅行神物', text: '夾鏈袋 / 行李壓縮袋（分裝龍眼乾、芒果乾與液體戰利品）', packed: false },
-        { id: 'p20', cat: '清邁旅行神物', text: '機上頸枕 ＆ 眼罩（1/30 凌晨 01:40 紅眼班機回程補眠神器）', packed: false }
+        { id: 'p17', cat: '清邁旅行神物', text: '輕便折疊購物袋 (瓦洛洛市場買果乾、Big C 掃貨超好用)', packed: false },
+        { id: 'p18', cat: '清邁旅行神物', text: '酒精濕紙巾 ＆ 面紙 (逛夜市、市集邊走邊吃清潔雙手)', packed: false },
+        { id: 'p19', cat: '清邁旅行神物', text: '夾鏈袋 / 行李壓縮袋 (分裝龍眼乾、芒果乾與液體戰利品)', packed: false },
+        { id: 'p20', cat: '清邁旅行神物', text: '機上頸枕 ＆ 眼罩 (1/30 凌晨 01:40 紅眼班機回程補眠神器)', packed: false }
       ];
 
       // ==================== 4. 預設購物清單 (與行前準備相同互動邏輯) ====================
         const DEFAULT_SHOPPING = [
           { id: 's1', tag: '食物', text: '大哥花生豆', done: false },
           { id: 's2', tag: '食物', text: '芒果乾', done: false },
-          { id: 's3', tag: '食物', text: '泰國皇家蜂蜜（條裝軟管）', done: false },
+          { id: 's3', tag: '食物', text: '泰國皇家蜂蜜 (條裝軟管)', done: false },
           { id: 's4', tag: '用品', text: '大象褲', done: false },
           { id: 's5', tag: '用品', text: '薄荷鼻通', done: false },
           { id: 's6', tag: '用品', text: '酸痛藥膏', done: false },
@@ -770,7 +813,53 @@
       let editingPackId = null;
       let editingShopId = null;
       let hidePackedItems = false;
+      let pendingDeleteTarget = null; // 👈 新增這行：紀錄目前要刪除哪一筆
 
+      // 👇 新增以下三個函式：打開視窗、關閉視窗、按下確定刪除
+      function openDeleteModal(type, id) {
+        let item = null;
+        if (type === 'packing') {
+          item = packing.find(p => p.id === id);
+        } else if (type === 'shopping') {
+          item = shopping.find(s => s.id === id);
+        }
+        if (!item) return;
+
+        pendingDeleteTarget = { type, id };
+        document.getElementById('delete-modal-text').textContent = item.text;
+        const modal = document.getElementById('delete-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeDeleteModal() {
+        pendingDeleteTarget = null;
+        const modal = document.getElementById('delete-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function confirmDeleteItem() {
+        if (!pendingDeleteTarget) return;
+        const { type, id } = pendingDeleteTarget;
+
+        if (type === 'packing') {
+          packing = packing.filter(p => p.id !== id);
+          if (editingPackId === id) editingPackId = null;
+          savePacking();
+          renderPacking();
+          showToast('已刪除該行李項目');
+        } else if (type === 'shopping') {
+          shopping = shopping.filter(s => s.id !== id);
+          if (editingShopId === id) editingShopId = null;
+          saveShopping();
+          renderShopping();
+          showToast('已刪除該購物項目');
+        }
+
+        closeDeleteModal();
+      }
+      
       function saveTodos() {
         localStorage.setItem(STORAGE_KEYS.TODOS, JSON.stringify(todos));
         updateBadges();
@@ -845,6 +934,29 @@
         container.innerHTML = filtered.map(day => {
           const eventsHtml = day.events.map((ev, idx) => {
             const isLast = idx === day.events.length - 1;
+
+            // 如果該行程有設定 maps 陣列，就自動生出對應數量的 Google Maps 導航按鈕
+            const mapsHtml = (ev.maps && ev.maps.length > 0)
+              ? `<div class="flex flex-wrap items-center gap-1.5 mt-2.5">
+                  ${ev.maps.map(m => {
+                    const mapUrl = m.url || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(m.query)}`;
+                    return `
+                      <a href="${mapUrl}" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-palm-light hover:bg-palm text-palm hover:text-silk border border-palm/20 text-xs font-medium transition shadow-2xs group"
+                        title="開啟 Google Maps 導航至 ${m.name}">
+                        <svg class="w-3.5 h-3.5 text-thaimilk group-hover:text-lannagold shrink-0 transition" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
+                        </svg>
+                        <span>${m.name}</span>
+                        <svg class="w-3 h-3 opacity-60 group-hover:opacity-100 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                      </a>
+                    `;
+                  }).join('')}
+                </div>`
+              : '';
+
             return `
               <div class="relative pl-6 sm:pl-7 ${isLast ? '' : 'pb-5 border-l border-teakborder'} ml-2">
                 <span class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-lannagold ring-4 ring-card"></span>
@@ -854,6 +966,7 @@
                 </div>
                 <h4 class="font-bold text-sm sm:text-base text-teak leading-snug">${ev.title}</h4>
                 <p class="text-xs sm:text-sm text-earth mt-1 leading-relaxed whitespace-pre-line">${ev.desc}</p>
+                ${mapsHtml}
               </div>
             `;
           }).join('');
@@ -1173,10 +1286,16 @@
                       </div>
 
                       ${!isEditing ? `
-                        <button onclick="startEditPacking('${item.id}')" class="p-1.5 -mt-0.5 rounded-lg text-earth hover:text-teak hover:bg-bamboo transition shrink-0" title="修改行李名稱">
+                      <div class="flex items-center gap-0.5 shrink-0">
+                        <button onclick="startEditPacking('${item.id}')" class="p-1.5 -mt-0.5 rounded-lg text-earth hover:text-teak hover:bg-bamboo transition" title="修改行李名稱">
                           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                         </button>
-                      ` : ''}
+                        <!-- 👇 新增這顆行李刪除按鈕 -->
+                        <button onclick="openDeleteModal('packing', '${item.id}')" class="p-1.5 -mt-0.5 rounded-lg text-sandmuted hover:text-thaimilk hover:bg-thaimilk-light transition" title="刪除此行李項目">
+                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                        </button>
+                      </div>
+                    ` : ''}
                     </div>
                   `;
                 }).join('')}
@@ -1328,12 +1447,16 @@
               </div>
 
               ${!isEditing ? `
-                <div class="flex items-center gap-1 shrink-0">
-                  <button onclick="startEditShopping('${item.id}')" class="p-2 rounded-lg text-earth hover:text-teak hover:bg-bamboo transition" title="修改商品內容">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                  </button>
-                </div>
-              ` : ''}
+              <div class="flex items-center gap-1 shrink-0">
+                <button onclick="startEditShopping('${item.id}')" class="p-2 rounded-lg text-earth hover:text-teak hover:bg-bamboo transition" title="修改商品內容">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                </button>
+                <!-- 👇 新增這顆購物刪除按鈕 -->
+                <button onclick="openDeleteModal('shopping', '${item.id}')" class="p-2 rounded-lg text-sandmuted hover:text-thaimilk hover:bg-thaimilk-light transition" title="刪除此購物項目">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            ` : ''}
             </div>
           `;
         }).join('');
